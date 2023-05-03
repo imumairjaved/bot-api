@@ -7,6 +7,7 @@ app.get("/", (req, res) => {
     "https://globalmetals.xignite.com/xGlobalMetals.json/GetRealTimeExtendedMetalQuote?Symbol=XAUKG&Currency=USD&_token=35E4CB5CDB5A4E77956AADE88CC385B8",
     (error, response, body) => {
       let data = JSON.parse(body);
+
       var bid_price = parseInt(
         (data.Bid / 1000 / 1.011).toFixed(2)
       ).toLocaleString("en-US", {
@@ -38,10 +39,10 @@ app.get("/", (req, res) => {
       });
 
       var priceObj = {
-        ask: ask_price,
-        bid: bid_price,
-        low: low_price,
-        high: high_price,
+        ask: ask_price ? `US${ask_price}` : 0,
+        bid: bid_price ? `US${bid_price}` : 0,
+        low: low_price ? `US${low_price}` : 0,
+        high: high_price ? `US${high_price}` : 0,
       };
       res.send(priceObj);
     }
