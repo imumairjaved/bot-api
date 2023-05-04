@@ -50,9 +50,9 @@ app.get("/api/getPrices", (req, res) => {
 });
 
 app.post("/api/totalPrice", function (req, res) {
-  var body = req.query;
+  var query = req.query;
   var totalPrice = parseFloat(
-    (body.price * body.quantity).toFixed(2)
+    (query.price * query.quantity).toFixed(2)
   ).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
